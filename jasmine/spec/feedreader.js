@@ -13,8 +13,8 @@ $(function() {
     // This suite is all about the RSS feeds definitions, the allFeeds variable in our application.
     describe('RSS Feeds', function() {
 
-        // test to make sure that the allFeeds variable has been defined and that it is not empty. 
-         
+        // test to make sure that the allFeeds variable has been defined and that it is not empty.
+
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
@@ -27,7 +27,7 @@ $(function() {
 
         it('each feed url is defined and not empty', function() {
             allFeeds.forEach(Feed => {
-            expect(Feed.url).toBeDefined();
+              expect(Feed.url).toBeDefined(); //indentation fixed
             expect(Feed.url.length).not.toBe(0);
             });
         });
@@ -47,7 +47,7 @@ $(function() {
     /* new test suite named "The menu" */
     describe('The menu', function() {
 
-        // test that ensures the menu element is hidden by default. 
+        // test that ensures the menu element is hidden by default.
 
         it('is hidden by default', function() {
             var checkForClass = $('body').hasClass('menu-hidden');
@@ -58,16 +58,16 @@ $(function() {
         //  has two expectations: does the menu display when clicked and does it hide when clicked again.
 
         it('changes visibility on click', function() {
-            // first click 
+            // first click
             $('.menu-icon-link').click();
             expect($('body').hasClass('menu-hidden')).toBe(false);
 
             // second click
             $('.menu-icon-link').click();
-            expect($('body').hasClass('menu-hidden')).toBe(true);  
-            
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+
         });
-        
+
     });
 
 
@@ -75,7 +75,7 @@ $(function() {
     describe ('Initial Entries', function(){
 
         // test that ensures when the loadFeed function is called and completes its work, there is at least a single .entry element within the .feed container. loadFeed() is asynchronous so this test requires the use of Jasmine's beforeEach and asynchronous done() function.
-         
+
         beforeEach(function(done){
             loadFeed(0, done);
             });
@@ -87,20 +87,25 @@ $(function() {
 
     });
 
-        
+
 
     /* new test suite named "New Feed Selection" */
     describe ('New Feed Selection', function(){
 
         // Test that ensures when a new feed is loaded by the loadFeed function that the content actually changes.
 
-        let initialFeed;
-        let newFeed;
+        var initialFeed; // var fixed
+        var newFeed;
 
         beforeEach(function(done){
             loadFeed(0, function () {
-                initialFeed = $('.feed').html();
-                done();                
+              // feed #0 is loaded
+              loadFeed ( 1, function() {
+                //feed #1 is loaded
+                done()
+              })
+                /*initialFeed = $('.feed').html();
+                done();*/
             });
         });
 
@@ -114,5 +119,5 @@ $(function() {
 
         });
     });
-        
+
 }());
